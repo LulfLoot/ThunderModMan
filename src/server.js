@@ -34,10 +34,21 @@ app.get('/api/packages/:community', async (req, res) => {
 /**
  * Search packages
  */
+/**
+ * Search packages
+ */
 app.get('/api/packages/:community/search', async (req, res) => {
   try {
     const query = req.query.q || '';
-    const packages = await thunderstore.searchPackages(req.params.community, query);
+    const sort = req.query.sort || 'last-updated';
+    const categories = req.query.categories ? req.query.categories.split(',') : [];
+    
+    const packages = await thunderstore.searchPackages(
+      req.params.community, 
+      query,
+      sort,
+      categories
+    );
     res.json(packages);
   } catch (e) {
     res.status(500).json({ error: e.message });

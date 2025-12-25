@@ -19,6 +19,10 @@ const modalClose = document.getElementById('modal-close');
 const consoleOutput = document.getElementById('console-output');
 const refreshLogsBtn = document.getElementById('refresh-logs-btn');
 const serverStatusEl = document.getElementById('server-status');
+const sortSelect = document.getElementById('sort-select');
+const categoryFilters = document.getElementById('category-filters');
+
+let activeCategories = new Set();
 
 // API Functions
 async function fetchCommunities() {
@@ -31,8 +35,13 @@ async function fetchPackages(community) {
   return res.json();
 }
 
-async function searchPackages(community, query) {
-  const res = await fetch(`/api/packages/${community}/search?q=${encodeURIComponent(query)}`);
+async function searchPackages(community, query, sort = 'last-updated', categories = []) {
+  const params = new URLSearchParams({
+    q: query,
+    sort: sort,
+    categories: categories.join(',')
+  });
+  const res = await fetch(`/api/packages/${community}/search?${params}`);
   return res.json();
 }
 
@@ -184,24 +193,54 @@ async function handleCommunityChange() {
 
   try {
     packages = await fetchPackages(currentCommunity);
-    totalModsEl.textContent = formatNumber(packages.length);
-    renderModGrid(packages);
+    // Extract unique categories
+    const allCategories = new Set();
+    packages.forEach(p => p.categories?.forEach(c => allCategories.add(c)));
+    
+    // Reset active filters
+    activeCategories.clear();
+    
+    renderCategoryFilters(Array.from(allCategories).sort());
+
+    // Apply current sort/filter (default)
+    handleSearch();
   } catch (e) {
     showToast('Failed to load mods', 'error');
   }
 }
 
+function renderCategoryFilters(categories) {
+  categoryFilters.innerHTML = categories.map(cat => `
+    <div class="category-pill ${activeCategories.has(cat) ? 'active' : ''}" data-category="${cat}">
+      ${cat}
+    </div>
+  `).join('');
+
+  categoryFilters.querySelectorAll('.category-pill').forEach(pill => {
+    pill.addEventListener('click', (e) => {
+      const cat = e.target.dataset.category;
+      if (activeCategories.has(cat)) {
+        activeCategories.delete(cat);
+      } else {
+        activeCategories.add(cat);
+      }
+      handleSearch();
+      renderCategoryFilters(categories); // Re-render to update active state
+    });
+  });
+}
+
 async function handleSearch() {
   const query = searchInput.value.trim();
+  const sort = sortSelect.value;
+  const categories = Array.from(activeCategories);
+
   if (!currentCommunity) return;
 
-  if (!query) {
-    renderModGrid(packages);
-    return;
-  }
-
   try {
-    const results = await searchPackages(currentCommunity, query);
+    // If no query and no filters, just show all (or client-side sort if optimizing)
+    // But since backend handles sort/filter, we always call searchPackages
+    const results = await searchPackages(currentCommunity, query, sort, categories);
     renderModGrid(results);
   } catch (e) {
     showToast('Search failed', 'error');
@@ -354,6 +393,7 @@ refreshLogsBtn.addEventListener('click', refreshLogs);
 consoleModal.addEventListener('click', (e) => {
   if (e.target === consoleModal) closeConsole();
 });
+sortSelect.addEventListener('change', handleSearch);
 
 // Refresh server status periodically
 setInterval(refreshServerStatus, 30000);

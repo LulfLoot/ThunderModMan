@@ -28,8 +28,27 @@
           </select>
         </div>
 
+        <div class="filter-group">
+          <label for="sort-select">Sort By</label>
+          <select id="sort-select">
+            <option value="last-updated">Last Updated</option>
+            <option value="name">Name (A-Z)</option>
+            <option value="downloads">Downloads</option>
+            <option value="rating">Rating</option>
+          </select>
+        </div>
+
         <div class="search-box">
           <input type="text" id="search" placeholder="Search mods..." />
+        </div>
+
+        <div class="category-section">
+          <div class="category-header">
+            <span>Categories</span> <!-- Removed toggle button for simplicity -->
+          </div>
+          <div id="category-filters" class="category-filters">
+            <!-- Populated by JS -->
+          </div>
         </div>
 
         <div class="stats">

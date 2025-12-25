@@ -79,17 +79,49 @@ async function getPackages(communityId) {
 }
 
 /**
- * Search packages by query
+ * Search packages by query with sorting and filtering
  */
-async function searchPackages(communityId, query) {
-  const packages = await getPackages(communityId);
-  const lowerQuery = query.toLowerCase();
+async function searchPackages(communityId, query, sort = 'last-updated', categories = []) {
+  let packages = await getPackages(communityId);
   
-  return packages.filter(pkg => 
-    pkg.name.toLowerCase().includes(lowerQuery) ||
-    pkg.owner.toLowerCase().includes(lowerQuery) ||
-    pkg.description.toLowerCase().includes(lowerQuery)
-  );
+  // 1. Filter by query
+  if (query) {
+    const lowerQuery = query.toLowerCase();
+    packages = packages.filter(pkg => 
+      pkg.name.toLowerCase().includes(lowerQuery) ||
+      pkg.owner.toLowerCase().includes(lowerQuery) ||
+      pkg.description.toLowerCase().includes(lowerQuery)
+    );
+  }
+
+  // 2. Filter by categories
+  if (categories && categories.length > 0) {
+    // Treat as "AND" - package must have all selected categories
+    // Or "OR"? Typically mod managers use OR or AND. Let's start with OR (any of the selected).
+    // Actually r2modman "Categories" filter usually implies "Show mods that are in ANY of these categories".
+    // But usually simple filtering checks if standard categories match.
+    // Let's stick to "Has at least one of the selected categories" if categories is an array.
+    packages = packages.filter(pkg => 
+      pkg.categories.some(cat => categories.includes(cat))
+    );
+  }
+
+  // 3. Sort
+  packages.sort((a, b) => {
+    switch (sort) {
+      case 'name':
+        return a.name.localeCompare(b.name);
+      case 'downloads':
+        return b.downloads - a.downloads;
+      case 'rating':
+        return b.rating - a.rating;
+      case 'last-updated':
+      default:
+        return new Date(b.dateUpdated) - new Date(a.dateUpdated);
+    }
+  });
+  
+  return packages;
 }
 
 /**

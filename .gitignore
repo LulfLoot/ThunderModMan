@@ -10,3 +10,4 @@ mod-manager-data/
 # OS files
 .DS_Store
 Thumbs.db
+DEPLOYMENT.md
