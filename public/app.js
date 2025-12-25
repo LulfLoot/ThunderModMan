@@ -259,7 +259,7 @@ async function handleInstall(e) {
     if (result.results?.some(r => r.success)) {
       showToast(`Installed ${fullName}`, 'success');
       await refreshInstalled();
-      renderModGrid(packages);
+      handleSearch(); // Refresh grid with current sort/filter
     } else {
       showToast('Installation failed', 'error');
       btn.disabled = false;
@@ -280,7 +280,7 @@ async function handleUninstall(e) {
     if (result.success) {
       showToast(`Removed ${fullName}`, 'success');
       await refreshInstalled();
-      renderModGrid(packages);
+      handleSearch(); // Refresh grid with current sort/filter
     } else {
       showToast('Uninstall failed', 'error');
     }
