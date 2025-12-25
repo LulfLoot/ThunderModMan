@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thunderstore Mod Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="logo">
+          <div class="logo-icon">⚡</div>
+          <span>Mod Manager</span>
+        </div>
+
+        <div class="community-select">
+          <label for="community">Game Community</label>
+          <select id="community">
+            <option value="">Loading...</option>
+          </select>
+        </div>
+
+        <div class="search-box">
+          <input type="text" id="search" placeholder="Search mods..." />
+        </div>
+
+        <div class="stats">
+          <div class="stat-row">
+            <span class="stat-label">Available Mods</span>
+            <span class="stat-value" id="total-mods">-</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Installed</span>
+            <span class="stat-value" id="installed-count">0</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main">
+        <header class="main-header">
+          <h1>Available Mods</h1>
+          <button class="refresh-btn" id="refresh-btn">↻ Refresh</button>
+        </header>
+
+        <div id="mod-container">
+          <div class="empty-state">
+            <div class="empty-icon">📦</div>
+            <p>Select a game community to browse mods</p>
+          </div>
+        </div>
+      </main>
+
+      <!-- Installed Sidebar -->
+      <aside class="installed-sidebar">
+        <header class="installed-header">
+          <h2>Installed Mods</h2>
+          <span class="installed-count" id="installed-badge">0</span>
+        </header>
+
+        <div class="installed-list" id="installed-list">
+          <div class="empty-state">
+            <div class="empty-icon">🎮</div>
+            <p>No mods installed yet</p>
+          </div>
+        </div>
+
+        <button
+          class="refresh-btn"
+          id="restart-server-btn"
+          style="margin-top: 16px; width: 100%"
+        >
+          🔄 Restart Server
+        </button>
+      </aside>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

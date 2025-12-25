@@ -1,0 +1,42 @@
+services:
+  # Valheim game server with BepInEx mod support
+  valheim:
+    image: mbround18/valheim:latest
+    container_name: valheim-server
+    ports:
+      - "2456:2456/udp"
+      - "2457:2457/udp"
+      - "2458:2458/udp"
+    volumes:
+      - ./valheim-data:/home/steam/valheim
+      - ./mods:/home/steam/valheim/BepInEx/plugins
+    environment:
+      - TZ=UTC
+      - NAME=My Valheim Server
+      - WORLD=MyWorld
+      - PASSWORD=changeme
+      - TYPE=BepInEx
+      - AUTO_UPDATE=1
+    restart: unless-stopped
+
+  # Thunderstore Web Mod Manager
+  mod-manager:
+    build: .
+    container_name: mod-manager
+    ports:
+      - "9876:9876"
+    volumes:
+      # Shared mods directory with valheim
+      - ./mods:/mods
+      # Persistent data for installed mods tracking
+      - ./mod-manager-data:/data
+      # Docker socket for optional server restart feature
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - PORT=9876
+      - MODS_DIR=/mods
+      - DATA_DIR=/data
+      - RESTART_CONTAINER=valheim-server
+    depends_on:
+      - valheim
+    restart: unless-stopped

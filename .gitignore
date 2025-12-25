@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.log
+
+# Data directories (created at runtime)
+valheim-data/
+mods/
+mod-manager-data/
+
+# OS files
+.DS_Store
+Thumbs.db
