@@ -17,6 +17,9 @@ services:
       - PASSWORD=changeme
       - TYPE=BepInEx
       - AUTO_UPDATE=1
+      - SCHEDULED_RESTART=0 5 * * * # Restarts server at 5AM daily
+      - AUTO_BACKUP=1               # Ensures you never lose data
+      - BACKUP_ON_STOP=1            # Forces a backup if you manually stop it
     restart: unless-stopped
 
   # Thunder Dockman - Web-based mod manager
