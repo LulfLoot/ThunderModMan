@@ -36,7 +36,7 @@ Then open **http://localhost:9876** to manage mods.
 Clone the repo and use the included docker-compose:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/thunder-dockman.git
+git clone https://github.com/<username>/thunder-dockman.git
 cd thunder-dockman
 
 # Edit docker-compose.yml to configure your server
