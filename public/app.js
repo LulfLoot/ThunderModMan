@@ -176,7 +176,7 @@ function toggleFilterDropdown() {
   filterDropdownOpen = !filterDropdownOpen;
   filterDropdown.classList.toggle('open', filterDropdownOpen);
   filterToggleBtn.classList.toggle('active', filterDropdownOpen);
-  filterToggleBtn.textContent = filterDropdownOpen ? '🔼 Filters' : '🔽 Filters';
+  filterToggleBtn.textContent = filterDropdownOpen ? '▲ Filters' : '▼ Filters';
 }
 
 // Left Nav Sidebar Toggle
@@ -206,7 +206,7 @@ function renderModGrid(mods) {
   if (!mods.length) {
     modContainer.innerHTML = `
       <div class="empty-state">
-        <div class="empty-icon">🔍</div>
+        <div class="empty-icon">⌕</div>
         <p>No mods found</p>
       </div>
     `;
@@ -222,7 +222,7 @@ function renderModGrid(mods) {
         return `
           <div class="mod-card ${isInstalled ? 'installed' : ''}" data-fullname="${pkg.fullName}">
             <div class="mod-header">
-              <img class="mod-icon" src="${pkg.icon || ''}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23252532%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2240%22>📦</text></svg>'">
+              <img class="mod-icon" src="${pkg.icon || ''}" alt="" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect fill=%22%23252532%22 width=%22100%22 height=%22100%22/><text x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%2394a3b8%22 font-size=%2240%22>⚛</text></svg>'">
               <div class="mod-info">
                 <a href="${pkg.packageUrl}" target="_blank" rel="noopener" class="mod-name">${pkg.name}</a>
                 <div class="mod-owner">by ${pkg.owner}</div>
@@ -232,8 +232,8 @@ function renderModGrid(mods) {
             <div class="mod-description">${pkg.description || 'No description'}</div>
             <div class="mod-footer">
               <div class="mod-stats">
-                <span>⬇️ ${formatNumber(pkg.downloads)}</span>
-                <span>⭐ ${pkg.rating}</span>
+                <span>↓ ${formatNumber(pkg.downloads)}</span>
+                <span>★ ${pkg.rating}</span>
               </div>
               <button class="install-btn ${isInstalled ? 'installed' : ''}" 
                       data-fullname="${pkg.fullName}"
@@ -269,7 +269,7 @@ function renderInstalledMods() {
   if (!count) {
     installedList.innerHTML = `
       <div class="empty-state">
-        <div class="empty-icon">🎮</div>
+        <div class="empty-icon">∅</div>
         <p>No mods installed yet</p>
       </div>
     `;
@@ -458,7 +458,7 @@ async function handleStopServer() {
   }
   
   stopServerBtn.disabled = false;
-  stopServerBtn.textContent = '⬛ Stop';
+  stopServerBtn.textContent = '■ Stop';
 }
 
 async function handleRestartServer() {
@@ -478,7 +478,7 @@ async function handleRestartServer() {
   }
   
   restartServerBtn.disabled = false;
-  restartServerBtn.textContent = '🔄 Restart';
+  restartServerBtn.textContent = '↻ Restart';
 }
 
 async function refreshInstalled() {
