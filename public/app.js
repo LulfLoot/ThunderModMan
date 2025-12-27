@@ -159,13 +159,8 @@ function switchView(view) {
   // Handle right sidebar visibility
   if (view === 'server') {
     appEl.classList.add('server-view-active');
-    rightSidebar.classList.add('hidden');
   } else {
     appEl.classList.remove('server-view-active');
-    if (rightSidebarVisible) {
-      rightSidebar.classList.remove('hidden');
-      appEl.classList.remove('sidebar-hidden');
-    }
   }
   
   // Start console polling if on server view
@@ -184,12 +179,23 @@ function toggleFilterDropdown() {
   filterToggleBtn.textContent = filterDropdownOpen ? '🔼 Filters' : '🔽 Filters';
 }
 
+// Left Nav Sidebar Toggle
+let navCollapsed = false;
+const navCollapseBtn = document.getElementById('nav-collapse-btn');
+
+function toggleNavSidebar() {
+  navCollapsed = !navCollapsed;
+  appEl.classList.toggle('nav-collapsed', navCollapsed);
+  navCollapseBtn.textContent = navCollapsed ? '▶' : '◀';
+  navCollapseBtn.title = navCollapsed ? 'Expand sidebar' : 'Collapse sidebar';
+}
+
 // Right Sidebar Toggle
 function toggleRightSidebar() {
   rightSidebarVisible = !rightSidebarVisible;
-  rightSidebar.classList.toggle('hidden', !rightSidebarVisible);
+  rightSidebar.classList.toggle('collapsed', !rightSidebarVisible);
   appEl.classList.toggle('sidebar-hidden', !rightSidebarVisible);
-  sidebarToggle.textContent = rightSidebarVisible ? '▶' : '◀';
+  sidebarToggle.textContent = rightSidebarVisible ? '◀ Hide' : '▶ Show';
 }
 
 // Render Functions
@@ -651,6 +657,9 @@ sortSelect.addEventListener('change', handleSearch);
 startServerBtn.addEventListener('click', handleStartServer);
 stopServerBtn.addEventListener('click', handleStopServer);
 restartServerBtn.addEventListener('click', handleRestartServer);
+
+// Event Listeners - Left Nav Sidebar
+navCollapseBtn.addEventListener('click', toggleNavSidebar);
 
 // Event Listeners - Right Sidebar
 sidebarToggle.addEventListener('click', toggleRightSidebar);

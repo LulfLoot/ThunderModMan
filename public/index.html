@@ -19,29 +19,31 @@
       <div class="mobile-overlay" id="mobile-overlay"></div>
 
       <!-- Left Navigation Sidebar -->
-
-      <aside class="nav-sidebar">
+      <aside class="nav-sidebar" id="nav-sidebar">
+        <button class="nav-collapse-btn" id="nav-collapse-btn" title="Collapse sidebar">◀</button>
+        
         <div class="logo">
           <div class="logo-icon">⚡</div>
-          <span>ThunderModMan</span>
+          <span class="logo-text">ThunderModMan</span>
         </div>
 
         <nav class="nav-tabs">
           <button class="nav-tab active" data-view="browse">
             <span class="nav-icon">📦</span>
-            <span>Browse</span>
+            <span class="nav-tab-text">Browse</span>
           </button>
           <button class="nav-tab" data-view="installed">
             <span class="nav-icon">✓</span>
-            <span>Installed</span>
+            <span class="nav-tab-text">Installed</span>
             <span class="nav-badge" id="nav-installed-badge">0</span>
           </button>
           <button class="nav-tab" data-view="server">
             <span class="nav-icon">🖥️</span>
-            <span>Server</span>
+            <span class="nav-tab-text">Server</span>
           </button>
         </nav>
       </aside>
+
 
       <!-- Main Content Area -->
       <main class="main">
@@ -161,10 +163,10 @@
         </div>
       </main>
 
-      <!-- Right Sidebar (Server Status - hideable) -->
+      <!-- Right Sidebar (Server Status - collapsible) -->
       <aside class="right-sidebar" id="right-sidebar">
-        <button class="sidebar-toggle" id="sidebar-toggle" title="Hide Sidebar">
-          ▶
+        <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle Sidebar">
+          ◀ Hide
         </button>
 
         <div class="sidebar-content">
@@ -183,6 +185,7 @@
           </button>
         </div>
       </aside>
+
     </div>
 
     <!-- Confirmation Modal -->
