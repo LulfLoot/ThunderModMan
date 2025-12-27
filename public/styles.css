@@ -409,7 +409,7 @@ body {
 .category-pill.active {
   background: var(--accent);
   border-color: var(--accent);
-  color: white;
+  color: #000000;
 }
 
 .filter-stats {
@@ -561,7 +561,7 @@ a.mod-name:hover {
   background: var(--accent);
   border: none;
   border-radius: var(--radius-sm);
-  color: white;
+  color: #000000;
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -590,7 +590,7 @@ a.mod-name:hover {
 /* === Installed View === */
 .installed-count-badge {
   background: var(--accent);
-  color: white;
+  color: #000000;
   padding: 6px 14px;
   border-radius: 20px;
   font-size: 0.9rem;
