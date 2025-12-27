@@ -144,45 +144,54 @@
           </div>
 
           <div class="server-controls-row">
-            <button class="server-btn start-btn" id="start-server-btn">
-              ▶ Start
-            </button>
-            <button class="server-btn stop-btn" id="stop-server-btn" disabled>
-              ■ Stop
-            </button>
-            <button class="server-btn restart-btn" id="restart-server-btn" disabled>
-              ↻ Restart
-            </button>
+            <button class="server-btn start-btn compact-btn" id="start-server-btn">▶</button>
+            <button class="server-btn stop-btn compact-btn" id="stop-server-btn" disabled>■</button>
+            <button class="server-btn restart-btn compact-btn" id="restart-server-btn" disabled>↻</button>
+            <button class="server-btn compact-btn" id="utilities-toggle-btn" onclick="document.getElementById('utilities-card').classList.toggle('open')">⚙ Utilities ▼</button>
           </div>
 
-          <!-- Server Settings -->
-          <div class="server-status-card">
-            <div class="status-indicator">
-              <div class="status-text" style="font-size: 1rem;">Auto-Stop Settings</div>
-            </div>
-            <div class="setting-controls" style="display: flex; align-items: center; gap: 16px;">
-              <label class="toggle-switch" style="position: relative; display: inline-block; width: 44px; height: 24px;">
-                <input type="checkbox" id="auto-stop-toggle" style="opacity: 0; width: 0; height: 0;">
-                <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-tertiary); transition: .4s; border-radius: 34px; border: 1px solid var(--border);"></span>
-              </label>
-              <div class="setting-input-group" style="display: flex; align-items: center; gap: 8px;">
-                <input type="number" id="auto-stop-timeout" min="5" max="120" value="15" style="width: 60px; padding: 6px; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); border-radius: 4px;">
-                <span style="color: var(--text-muted); font-size: 0.9rem;">min idle timeout</span>
+          <!-- Server Utilities Dropdown -->
+          <div class="server-status-card collapsible-card" id="utilities-card">
+            
+            <div class="card-content utilities-grid-3">
+              <!-- Auto-Stop Section (Left) -->
+              <div class="utility-section">
+                <h4>Auto-Stop</h4>
+                <div class="auto-stop-controls">
+                  <label class="toggle-switch" style="position: relative; display: inline-block; width: 44px; height: 24px;">
+                    <input type="checkbox" id="auto-stop-toggle" style="opacity: 0; width: 0; height: 0;">
+                    <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-tertiary); transition: .4s; border-radius: 34px; border: 1px solid var(--border);"></span>
+                  </label>
+                  <input type="number" id="auto-stop-timeout" min="5" max="120" value="15" style="width: 50px; padding: 6px; background: var(--bg-tertiary); border: 1px solid var(--border); color: var(--text-primary); border-radius: 4px; text-align: center;">
+                  <span style="color: var(--text-muted); font-size: 0.85rem;">min</span>
+                </div>
+                <span id="auto-stop-status" style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 8px; display: block;">Disabled</span>
               </div>
-              <div id="auto-stop-status" style="color: var(--text-secondary); font-size: 0.85rem; margin-left: auto;">
-                Idle: 0m
-              </div>
-            </div>
-          </div>
 
-          <!-- World Backups -->
-          <div class="server-status-card">
-            <div class="status-indicator" style="justify-content: space-between;">
-              <div class="status-text" style="font-size: 1rem;">World Backups</div>
-              <button class="server-btn" id="create-backup-btn" style="padding: 4px 12px; font-size: 0.85rem;">+ Create Backup</button>
-            </div>
-            <div class="backup-list" id="backup-list" style="margin-top: 12px; max-height: 150px; overflow-y: auto;">
-              <div style="color: var(--text-muted); font-size: 0.9rem; padding: 8px;">Loading backups...</div>
+              <!-- Backup Controls (Middle) -->
+              <div class="utility-section bordered-left">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+                  <h4 style="margin: 0;">Backups</h4>
+                  <button class="server-btn" id="create-backup-btn" style="width: 24px !important; height: 24px !important; min-width: 24px !important; min-height: 24px !important; padding: 0 !important; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; line-height: 1; flex: none !important;">+</button>
+                </div>
+                <div class="backup-controls">
+                  <div class="backup-row">
+                    <label class="toggle-switch" style="position: relative; display: inline-block; width: 44px; height: 24px;">
+                      <input type="checkbox" id="auto-backup-toggle" style="opacity: 0; width: 0; height: 0;">
+                      <span class="slider round" style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--bg-tertiary); transition: .4s; border-radius: 34px; border: 1px solid var(--border);"></span>
+                    </label>
+                    <span style="color: var(--text-muted); font-size: 0.85rem;">Auto</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Backup List (Right) -->
+              <div class="utility-section bordered-left">
+                <h4>Recent Backups</h4>
+                <div class="backup-list" id="backup-list">
+                  <div class="empty-backups">No backups yet</div>
+                </div>
+              </div>
             </div>
           </div>
 

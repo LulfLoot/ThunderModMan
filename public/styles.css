@@ -96,7 +96,7 @@ body {
 }
 
 .app.server-view-active .right-sidebar {
-  display: none;
+  display: none !important;
 }
 
 /* === Navigation Sidebar === */
@@ -762,6 +762,152 @@ a.mod-name:hover {
 .backup-btn.delete:hover {
   color: #ff4444;
   border-color: #ff4444;
+}
+
+.backup-btn.delete:hover {
+  color: #ff4444;
+  border-color: #ff4444;
+}
+
+/* === Collapsible Utilities === */
+.collapsible-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.collapsible-card .card-header:hover {
+  background: var(--bg-tertiary);
+}
+
+.collapsible-card .card-content {
+  display: none;
+  padding: 20px;
+  border-top: 1px solid var(--border);
+  animation: slideDown 0.2s ease;
+}
+
+.utilities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px; /* Wider gap for slick look */
+}
+
+.utilities-grid-3 {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr;
+  gap: 32px;
+}
+
+.backup-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.backup-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.utility-section.bordered-left {
+  border-left: 1px solid var(--border);
+  padding-left: 48px; /* Match gap visual balance */
+}
+
+.setting-controls.vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.auto-stop-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.auto-stop-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.utility-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.small-btn {
+  padding: 4px 12px;
+  font-size: 0.85rem;
+}
+
+.compact-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.empty-backups {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  padding: 8px;
+}
+
+.collapsible-card.open .card-content {
+  display: block;
+}
+
+.collapsible-card.open .card-content.utilities-grid {
+  display: grid;
+}
+
+.collapsible-card.open .card-content.utilities-grid-3 {
+  display: grid;
+}
+
+/* Hide only utilities dropdown when closed (not other elements) */
+#utilities-card:not(.open) {
+  display: none;
+}
+
+#utilities-card.open {
+  display: block;
+}
+
+.collapsible-card .toggle-icon {
+  transition: transform 0.3s;
+  font-size: 0.8rem;
+}
+
+.collapsible-card.open .toggle-icon {
+  transform: rotate(180deg);
+}
+
+.separator {
+  height: 1px;
+  background: var(--border);
+  margin: 16px 0;
+  border: none;
+}
+
+.utility-section h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
 }
 
 /* === Server View === */
