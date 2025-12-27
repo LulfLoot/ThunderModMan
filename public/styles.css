@@ -782,6 +782,7 @@ a.mod-name:hover {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  align-self: flex-end;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
