@@ -186,7 +186,6 @@ const navCollapseBtn = document.getElementById('nav-collapse-btn');
 function toggleNavSidebar() {
   navCollapsed = !navCollapsed;
   appEl.classList.toggle('nav-collapsed', navCollapsed);
-  navCollapseBtn.textContent = navCollapsed ? '▶' : '◀';
   navCollapseBtn.title = navCollapsed ? 'Expand sidebar' : 'Collapse sidebar';
 }
 
@@ -195,7 +194,7 @@ function toggleRightSidebar() {
   rightSidebarVisible = !rightSidebarVisible;
   rightSidebar.classList.toggle('collapsed', !rightSidebarVisible);
   appEl.classList.toggle('sidebar-hidden', !rightSidebarVisible);
-  sidebarToggle.textContent = rightSidebarVisible ? '◀ Hide' : '▶ Show';
+  sidebarToggle.title = rightSidebarVisible ? 'Hide sidebar' : 'Show sidebar';
 }
 
 // Render Functions

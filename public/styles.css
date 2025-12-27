@@ -71,30 +71,27 @@ body {
 .nav-sidebar {
   background: var(--bg-secondary);
   border-right: 1px solid var(--border);
-  padding: 16px 12px;
+  padding: 20px 14px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   transition: width 0.3s ease, padding 0.3s ease;
   overflow: hidden;
-  position: relative;
 }
 
 .nav-sidebar .nav-collapse-btn {
-  position: absolute;
-  top: 16px;
-  right: 8px;
-  width: 28px;
-  height: 28px;
+  margin-top: auto;
+  width: 100%;
+  padding: 12px;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--text-muted);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   transition: var(--transition);
 }
 
@@ -781,14 +778,14 @@ a.mod-name:hover {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  position: relative;
   transition: padding 0.3s ease, width 0.3s ease;
   overflow: hidden;
 }
 
 .right-sidebar .sidebar-toggle {
+  margin-top: auto;
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -797,10 +794,8 @@ a.mod-name:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  font-size: 0.85rem;
+  font-size: 1.2rem;
   transition: var(--transition);
-  margin-bottom: 8px;
 }
 
 .right-sidebar .sidebar-toggle:hover {
@@ -809,18 +804,11 @@ a.mod-name:hover {
 }
 
 .right-sidebar.collapsed {
-  padding: 12px 8px;
+  padding: 20px 10px;
 }
 
 .right-sidebar.collapsed .sidebar-content {
   display: none;
-}
-
-.right-sidebar.collapsed .sidebar-toggle {
-  padding: 12px 8px;
-
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
 }
 
 .sidebar-content h3 {
@@ -828,6 +816,8 @@ a.mod-name:hover {
   font-weight: 600;
   margin-bottom: 12px;
 }
+
+
 
 .server-status {
   display: flex;
