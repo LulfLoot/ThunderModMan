@@ -134,13 +134,9 @@ body {
 }
 
 .app.nav-collapsed .nav-sidebar {
-  padding: 16px 8px;
+  padding: 20px 12px;
 }
 
-.app.nav-collapsed .nav-collapse-btn {
-  right: 50%;
-  transform: translateX(50%);
-}
 
 /* === Navigation Tabs === */
 .nav-tabs {
@@ -786,6 +782,7 @@ a.mod-name:hover {
   width: 40px;
   height: 40px;
   flex-shrink: 0;
+  align-self: flex-end;
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
