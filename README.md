@@ -2,10 +2,11 @@
 
 A lightweight, web-based mod manager for game servers. Browse and install mods from [Thunderstore](https://thunderstore.io) directly through your browser. Currently works out of the box only with Valheim.
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/lulfloot)
+
 ![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/lulfloot)
 
 ## Features
 
