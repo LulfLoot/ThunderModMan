@@ -18,6 +18,7 @@ services:
       - "2458:2458/udp"
     volumes:
       - ./valheim-data:/home/steam/valheim
+      - ./valheim-data/config:/home/steam/.config
       - ./mods:/home/steam/valheim/BepInEx/plugins
     environment:
       - TZ=${TZ:-UTC}
