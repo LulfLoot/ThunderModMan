@@ -48,8 +48,8 @@ This is the easiest way to get started. It includes a pre-configured Valheim ser
 1.  Clone the repo:
 
     ```bash
-    git clone https://github.com/<username>/thundermodman.git
-    cd thundermodman
+    git clone https://github.com/LulfLoot/ThunderModMan/
+    cd ThunderModMan
     ```
 
 2.  Set up your configuration:
