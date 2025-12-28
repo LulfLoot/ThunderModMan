@@ -1,5 +1,7 @@
 # ThunderModMan
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/lulfloot)
+
 A lightweight, web-based mod manager for game servers. Browse and install mods from [Thunderstore](https://thunderstore.io) directly through your browser. Currently works out of the box only with Valheim.
 
 ![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker)
